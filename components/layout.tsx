@@ -8,6 +8,30 @@ type NavBarProps = {
     pageId: string
 }
 
+type FooterLinkProps = {
+    text: string
+    url: string
+}
+
+function FooterLink(props: FooterLinkProps) {
+    let {url, text} = props
+    return <a className="transition hover:text-teal-500" href={url}>{text}</a>
+}
+
+function Footer() {
+    return <footer className="pt-10 px-8 pb-16 border-t">
+        <div className="flex justify-between gap-6">
+            <div className="flex gap-6 text-sm font-medium text-zinc-600">
+                <FooterLink text={"About Me"} url={"/"} />
+                <FooterLink text={"Projects"} url={"/projects"} />
+                <FooterLink text={"Essays"} url={"/essays"} />
+            </div>
+            <p className="text-sm text-zinc-400">© 2023 Hariz Shah. All rights
+                reserved.</p>
+        </div>
+    </footer>
+}
+
 function NavItem(props:NavItemsProps) {
     const {title,url, isSelected} = props
     return (
@@ -38,6 +62,7 @@ export default function Layout({ children }: any) {
         <>
             <Navbar pageId={children.props.pageId} />
             <main>{children}</main>
+            <Footer />
         </>
     )
 }
